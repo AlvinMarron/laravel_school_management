@@ -1,58 +1,185 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Student Management System - Laravel 13 Project Final
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, relational Student Management System built using **Laravel 13**, **PHP 8.3+**, and **Bootstrap 5**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Student & Project Submission Information
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Full Name:** [Your Full Name Here]
+- **Student ID:** [Your Student ID]
+- **Course:** Web Development / Final Project
+- **Project Topic:** Option 1 - Student Management System
+- **Framework:** Laravel 13
+- **Database:** SQLite (default zero-configuration) / MySQL ready
+- **Demo Credentials:**
+  - **Email:** `admin@example.com`
+  - **Password:** `password123`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🌟 System Requirements & Features Implemented
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Authentication System (Login & Register)
+- Custom authentication built with standard Laravel session security and CSRF protection.
+- **Login View:** `/login` - with email, password, "remember me", and sample demo login credentials.
+- **Register View:** `/register` - with full name, email validation (unique), password confirmation.
+- **Protected Routes:** All CRUD and dashboard routes are guarded by the `auth` middleware.
+- **Logout:** Secure POST logout with session invalidation and token regeneration.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Relational Database Migrations & Eloquent Models
+Implements the exact relational schema requested:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+#### A. Table `departments` (Primary Key: `dept_id`)
+| Column | Type | Description |
+|---|---|---|
+| `dept_id` | BIGINT (PK) | Auto-increment primary key |
+| `dept_name` | VARCHAR(255) | Unique name of the academic department |
+| `manager_id` | VARCHAR(100) | Head of department / Manager identifier |
+| `location_id` | VARCHAR(150) | Office, building, or room location |
+| `created_at` | TIMESTAMP | Creation timestamp |
+| `updated_at` | TIMESTAMP | Last update timestamp |
 
-## Agentic Development
+#### B. Table `students` (Foreign Key: `dept_id` referencing `departments.dept_id`)
+| Column | Type | Description |
+|---|---|---|
+| `student_id` | BIGINT (PK) | Auto-increment primary key |
+| `student_name` | VARCHAR(255) | Full name of the student |
+| `gender` | VARCHAR(20) | Male, Female, Other |
+| `dob` | DATE | Date of Birth |
+| `enrollment` | VARCHAR(50) | Enrollment status (Active, Graduated, Suspended, Pending) |
+| `enrollment_date` | DATE | Date of enrollment |
+| `description` | TEXT | Detailed background remarks and notes |
+| `dept_id` | BIGINT (FK) | References `departments(dept_id)` with `onDelete('cascade')` |
+| `created_at` | TIMESTAMP | Creation timestamp |
+| `updated_at` | TIMESTAMP | Last update timestamp |
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+#### Connected Models:
+- `App\Models\Department`:
+  - Primary key: `dept_id`
+  - Relationship: `students()` returns `hasMany(Student::class, 'dept_id', 'dept_id')`
+- `App\Models\Student`:
+  - Primary key: `student_id`
+  - Relationship: `department()` returns `belongsTo(Department::class, 'dept_id', 'dept_id')`
 
+---
+
+### 3. CRUD Operations with Search & Filter
+- **Departments CRUD:**
+  - **List:** Search by department name, manager, or location with student count badges.
+  - **Create:** Form to add a new department with unique validation.
+  - **Show:** Detailed view of department profile + HTML Table of all students enrolled in it.
+  - **Edit / Update:** Form to modify department name and details.
+  - **Delete:** Safe delete with confirmation modal and warning.
+- **Students CRUD:**
+  - **Search:** Instant query filter by `student_name` or description.
+  - **Multi-Filter:** Filter simultaneously by `dept_id` (Department), `gender`, and `enrollment` status.
+  - **HTML Table:** Displays `student_id`, `student_name`, `gender`, `dob`, **`dept_name`** (from related departments table), `enrollment`, `enrollment_date`, and `description`.
+  - **Create:** Form with department dropdown populated dynamically from the database.
+  - **Show:** Detailed profile card with computed age, department location, and timestamps.
+  - **Edit / Update:** Pre-populated edit form.
+  - **Delete:** Modal confirmation delete.
+
+---
+
+### 4. Database Seeding
+Pre-configured with realistic academic seeders:
+- `UserSeeder`: Creates default administrator (`admin@example.com` / `password123`) and officer accounts.
+- `DepartmentSeeder`: Seeds 6 realistic academic faculties (Computer Science, Software Engineering, Business Administration, Electrical Engineering, Civil Engineering, Digital Arts).
+- `StudentSeeder`: Seeds 12 diverse student records properly linked to department IDs.
+
+---
+
+## 🚀 Quick Setup & Run Instructions
+
+### 1. Prerequisites
+- PHP 8.2 or 8.3+
+- Composer
+
+### 2. Installation Steps
 ```bash
-composer require laravel/boost --dev
+# Clone or extract project
+cd FINAL
 
-php artisan boost:install
+# Install dependencies (if not already installed)
+composer install
+
+# Environment setup
+cp .env.example .env
+php artisan key:generate
+
+# Run migrations and seed data
+php artisan migrate:fresh --seed
+
+# Start the development server
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Open your browser at: **`http://localhost:8000`**
 
-## Contributing
+Login with:
+- **Email:** `admin@example.com`
+- **Password:** `password123`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🧪 Automated Test Suite
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Run the full automated test suite verifying authentication, relational models, search, filters, and CRUD:
 
-## Security Vulnerabilities
+```bash
+php artisan test
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Result: **16 passed tests, 50 assertions (100% success)**.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📦 How to Submit
+
+### 1. Push to Your GitHub:
+```bash
+# Add your remote GitHub repository
+git remote add origin https://github.com/YOUR_USERNAME/laravel13-student-management.git
+
+# Rename branch to main (if needed)
+git branch -M main
+
+# Push source code
+git push -u origin main
+```
+
+### 2. Generate Project ZIP File:
+A ready-to-submit archive `Project_Laravel13_Student_Management.zip` is created directly in the workspace:
+```powershell
+Compress-Archive -Path * -Exclude "vendor", "node_modules", ".git" -DestinationPath "Project_Laravel13_Student_Management.zip" -Force
+```
+
+---
+
+## 📹 Video Recording Demo Checklist (MP4 / YouTube)
+
+When recording your video demo (e.g. using OBS, Windows Game Bar `Win + G`, or Loom):
+1. **Show Login / Register:**
+   - Log in using `admin@example.com` / `password123`.
+   - Optionally register a new account to show registration.
+2. **Dashboard Overview:**
+   - Show stat cards (Total Students, Departments, Enrolled, Male/Female ratio).
+3. **Departments CRUD:**
+   - Go to Departments page.
+   - Click **Add New Department**, fill in details, submit.
+   - Show the newly created department in the table.
+   - Click **View** to show department details and enrolled students.
+4. **Students CRUD & Relational Template:**
+   - Go to Students directory.
+   - Point out the **Department Name** column pulled directly from the `departments` table.
+   - Test **Search by Name** (e.g. type "Sophia" or "Alexander").
+   - Test **Filter by Department** dropdown (e.g. "Software Engineering").
+   - Test **Filter by Gender** and **Status**.
+   - Click **Add New Student**, select an assigned department, and submit.
+   - Edit the newly created student.
+   - Delete a test student with confirmation.
+5. **Show Code & Database (bonus points):**
+   - Show migrations (`create_departments_table.php`, `create_students_table.php`).
+   - Show model relationships (`Department::students()`, `Student::department()`).
+   - Show terminal running `php artisan test`.
