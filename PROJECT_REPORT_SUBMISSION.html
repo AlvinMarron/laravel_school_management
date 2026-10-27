@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Report - Student Management System (Laravel 13)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { font-size: 11pt; }
+            .page-break { page-break-before: always; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1e293b;
+            background-color: #f8fafc;
+            padding: 2rem 0;
+        }
+        .report-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 3rem;
+            max-width: 900px;
+            margin: auto;
+        }
+        .report-header {
+            border-bottom: 3px solid #4338ca;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            color: #312e81;
+            font-weight: 700;
+            border-left: 4px solid #4338ca;
+            padding-left: 0.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .table-custom th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+        }
+        .code-block {
+            background-color: #0f172a;
+            color: #38bdf8;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="no-print text-center mb-4">
+        <button onclick="window.print()" class="btn btn-primary px-4 py-2 fw-bold shadow">
+            <i class="bi bi-printer-fill me-2"></i> Print / Save as PDF
+        </button>
+        <span class="text-muted ms-3 small">Tip: Click this button and select <strong>"Save as PDF"</strong> in your browser print dialog.</span>
+    </div>
+
+    <div class="report-card">
+        <!-- Header -->
+        <div class="report-header d-flex justify-content-between align-items-center">
+            <div>
+                <span class="badge bg-primary px-3 py-2 mb-2">FINAL PROJECT SUBMISSION REPORT</span>
+                <h1 class="fw-bold mb-1 text-dark">Student Management System</h1>
+                <p class="text-muted mb-0">Built with <strong>Laravel 13</strong>, <strong>PHP 8.3</strong>, <strong>MySQL</strong> &amp; <strong>Bootstrap 5</strong></p>
+            </div>
+            <div class="text-end">
+                <i class="bi bi-mortarboard-fill text-primary" style="font-size: 3.5rem;"></i>
+            </div>
+        </div>
+
+        <!-- Student Information Card -->
+        <div class="card bg-light border-0 mb-4">
+            <div class="card-body p-3">
+                <div class="row g-2">
+                    <div class="col-sm-6"><strong>Student Full Name:</strong> [Your Full Name Here]</div>
+                    <div class="col-sm-6"><strong>Student ID:</strong> [Your Student ID]</div>
+                    <div class="col-sm-6"><strong>Course:</strong> Web Development Final Project</div>
+                    <div class="col-sm-6"><strong>Chosen Topic:</strong> Option 1 - Student Management System</div>
+                    <div class="col-sm-6"><strong>Framework:</strong> Laravel Framework 13.x</div>
+                    <div class="col-sm-6"><strong>Database:</strong> MySQL <code>student_management_db</code> (XAMPP / dbForge)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirements Matrix -->
+        <h4 class="section-title">1. System Requirements Compliance Matrix</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-custom align-middle">
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Requirement</th>
+                        <th style="width: 45%;">Implementation Details</th>
+                        <th style="width: 20%;" class="text-center">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Authentication System</strong><br><small class="text-muted">Login &amp; Register Forms</small></td>
+                        <td>Custom <code>AuthController</code> with validation, session security, CSRF protection, and <code>auth</code> middleware. Pre-seeded admin account.</td>
+                        <td class="text-center"><span class="badge bg-success"><i class="bi bi-check-circle"></i> 100% Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Relational Migrations &amp; Models</strong><br><small class="text-muted">Departments (PK) &amp; Students (FK)</small></td>
+                        <td>
+                            <code>departments</code> (PK: <code>dept_id</code>)<br>
+                            <code>students</code> (PK: <code>student_id</code>, FK: <code>dept_id</code> references <code>departments</code> with cascade delete).<br>
+                            Models with <code>hasMany()</code> &amp; <code>belongsTo()</code>.
+                        </td>
+                        <td class="text-center"><span class="badge bg-success"><i class="bi bi-check-circle"></i> 100% Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. CRUD with Filter &amp; Search</strong><br><small class="text-muted">Search Name, Filter Department, Gender, Status</small></td>
+                        <td>
+                            Search by <code>student_name</code> query.<br>
+                            Multi-filter dropdowns by Department, Gender, and Enrollment Status.<br>
+                            Preserved pagination via <code>withQueryString()</code>.
+                        </td>
+                        <td class="text-center"><span class="badge bg-success"><i class="bi bi-check-circle"></i> 100% Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Database Seeding</strong><br><small class="text-muted">Test Seeding Data</small></td>
+                        <td>
+                            <code>UserSeeder</code>: Admin credentials.<br>
+                            <code>DepartmentSeeder</code>: 6 Academic Departments.<br>
+                            <code>StudentSeeder</code>: 12 Realistic Student records.
+                        </td>
+                        <td class="text-center"><span class="badge bg-success"><i class="bi bi-check-circle"></i> 100% Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Template with Dept_Name Column</strong><br><small class="text-muted">HTML Table Presentation</small></td>
+                        <td>
+                            Students HTML Table with <code>Dept_Name</code> column pulled via relation <code>$student->department->dept_name</code>.<br>
+                            Departments HTML Table with student enrollment counters.
+                        </td>
+                        <td class="text-center"><span class="badge bg-success"><i class="bi bi-check-circle"></i> 100% Complete</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- Relational Database Schema -->
+        <h4 class="section-title">2. Relational Database Design &amp; Schema</h4>
+        <p>The system implements an explicit relational database structure connecting academic departments to enrolled students.</p>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-primary">
+                    <div class="card-header bg-primary text-white fw-bold">
+                        <i class="bi bi-table"></i> PARENT TABLE: departments
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-sm mb-0">
+                            <tr><th>Field</th><th>Type</th><th>Key</th></tr>
+                            <tr><td><code>dept_id</code></td><td>BIGINT</td><td><span class="badge bg-warning text-dark">PRIMARY KEY</span></td></tr>
+                            <tr><td><code>dept_name</code></td><td>VARCHAR(255)</td><td>UNIQUE</td></tr>
+                            <tr><td><code>manager_id</code></td><td>VARCHAR(100)</td><td>Nullable</td></tr>
+                            <tr><td><code>location_id</code></td><td>VARCHAR(150)</td><td>Nullable</td></tr>
+                            <tr><td><code>created_at</code></td><td>TIMESTAMP</td><td>-</td></tr>
+                            <tr><td><code>updated_at</code></td><td>TIMESTAMP</td><td>-</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100 border-indigo" style="border-color: #4338ca;">
+                    <div class="card-header text-white fw-bold" style="background-color: #4338ca;">
+                        <i class="bi bi-table"></i> CHILD TABLE: students
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-sm mb-0">
+                            <tr><th>Field</th><th>Type</th><th>Key</th></tr>
+                            <tr><td><code>student_id</code></td><td>BIGINT</td><td><span class="badge bg-warning text-dark">PRIMARY KEY</span></td></tr>
+                            <tr><td><code>student_name</code></td><td>VARCHAR(255)</td><td>-</td></tr>
+                            <tr><td><code>gender</code></td><td>VARCHAR(20)</td><td>-</td></tr>
+                            <tr><td><code>dob</code></td><td>DATE</td><td>-</td></tr>
+                            <tr><td><code>enrollment</code></td><td>VARCHAR(50)</td><td>-</td></tr>
+                            <tr><td><code>enrollment_date</code></td><td>DATE</td><td>-</td></tr>
+                            <tr><td><code>description</code></td><td>TEXT</td><td>Nullable</td></tr>
+                            <tr><td><code>dept_id</code></td><td>BIGINT</td><td><span class="badge bg-info text-dark">FOREIGN KEY &rarr; departments</span></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification in dbForge Studio for MySQL -->
+        <h4 class="section-title">3. dbForge Studio for MySQL Verification</h4>
+        <p>You can connect to MySQL in <strong>dbForge Studio for MySQL</strong> using:</p>
+        <ul>
+            <li><strong>Host:</strong> <code>localhost</code> | <strong>Port:</strong> <code>3306</code></li>
+            <li><strong>User:</strong> <code>root</code> | <strong>Password:</strong> *(Blank)*</li>
+            <li><strong>Database:</strong> <code>student_management_db</code></li>
+        </ul>
+        <p>The relational query executed in dbForge confirms data integrity:</p>
+        <div class="code-block mb-3">
+SELECT s.student_id, s.student_name, s.gender, d.dept_name, s.enrollment, s.enrollment_date
+FROM students s
+INNER JOIN departments d ON s.dept_id = d.dept_id
+ORDER BY s.student_id ASC;
+        </div>
+
+        <!-- Automated Test Results -->
+        <h4 class="section-title">4. Automated Testing Matrix</h4>
+        <p>The project includes 16 automated PHPUnit tests verifying every feature:</p>
+        <div class="code-block mb-3">
+{"tool":"phpunit","result":"passed","tests":16,"passed":16,"assertions":50,"duration_ms":506}
+        </div>
+
+        <!-- Submission Checklist -->
+        <h4 class="section-title">5. Deliverables &amp; Submission Files</h4>
+        <ol>
+            <li><strong>ZIP Archive:</strong> <code>Project_Laravel13_Student_Management.zip</code> in workspace root.</li>
+            <li><strong>10-Minute Video Script:</strong> <code>PRESENTATION_SCRIPT_10MIN.md</code>.</li>
+            <li><strong>Admin Credentials:</strong> <code>admin@example.com</code> / <code>password123</code>.</li>
+            <li><strong>GitHub Repository:</strong> Initialized with complete history.</li>
+        </ol>
+
+        <div class="text-center text-muted small mt-5 pt-3 border-top">
+            Final Project Report &bull; Laravel 13 Student Management System &bull; Academic Year 2026
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
