@@ -6,8 +6,9 @@ A modern, relational Student Management System built using **Laravel 13**, **PHP
 
 ## 📋 Student & Project Submission Information
 
-- **Full Name:** [Your Full Name Here]
-- **Student ID:** [Your Student ID]
+- **Full Name:** Alvin Marron
+- **GitHub Username:** AlvinMarron
+- **Repository URL:** https://github.com/AlvinMarron/laravel_school_management.git
 - **Course:** Web Development / Final Project
 - **Project Topic:** Option 1 - Student Management System
 - **Framework:** Laravel 13
@@ -140,9 +141,9 @@ Result: **16 passed tests, 50 assertions (100% success)**.
 ### 1. Push to Your GitHub:
 ```bash
 # Add your remote GitHub repository
-git remote add origin https://github.com/YOUR_USERNAME/laravel13-student-management.git
+git remote add origin https://github.com/AlvinMarron/laravel_school_management.git
 
-# Rename branch to main (if needed)
+# Set branch to main
 git branch -M main
 
 # Push source code

@@ -1,7 +1,8 @@
 # 10-Minute Video Demo Presentation Script
 ## Student Management System — Laravel 13 Final Project
 
-> **Presenter / Student Name:** [Insert Your Full Name Here]  
+> **Presenter / Student Name:** Alvin Marron (GitHub: @AlvinMarron)  
+> **Repository:** https://github.com/AlvinMarron/laravel_school_management.git  
 > **Course:** Web Development / Final Project  
 > **Topic:** Option 1 — Student Management System  
 > **Framework:** Laravel 13 (PHP 8.3+)  
@@ -34,7 +35,7 @@
 **[Screen: Show Title Page / README.md or Browser at `http://localhost:8000/login`]**
 
 > **Speaker:**  
-> "Hello respected professor and fellow classmates. My name is **[Your Full Name]**, and today I am proud to present my Final Web Development Project: the **Student Management System** built on **Laravel 13** with **PHP 8.3** and **MySQL**.
+> "Hello respected professor and fellow classmates. My name is **Alvin Marron**, and today I am proud to present my Final Web Development Project: the **Student Management System** built on **Laravel 13** with **PHP 8.3** and **MySQL**.
 >
 > From the available project options, I chose **Option 1: Student Management System**. This project fully satisfies every requirement outlined in our final assignment specifications:
 > 1. A secure Laravel **Authentication System** with Login, Registration, and Session Protection.

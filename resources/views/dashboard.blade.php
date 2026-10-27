@@ -6,7 +6,7 @@
 <div class="row align-items-center mb-4">
     <div class="col-md-8">
         <h2 class="fw-bold mb-1 text-dark">Dashboard Overview</h2>
-        <p class="text-muted mb-0">Welcome to your Student Management System on Laravel 13.</p>
+        <p class="text-muted mb-0">Welcome to your Student Management System.</p>
     </div>
     <div class="col-md-4 text-md-end mt-3 mt-md-0 d-flex gap-2 justify-content-md-end">
         <a href="{{ route('students.create') }}" class="btn btn-primary-custom d-flex align-items-center gap-2">
