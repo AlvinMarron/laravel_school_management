@@ -97,24 +97,7 @@ Pre-configured with realistic academic seeders:
 - PHP 8.2 or 8.3+
 - Composer
 
-### 2. Installation Steps
-```bash
-# Clone or extract project
-cd FINAL
 
-# Install dependencies (if not already installed)
-composer install
-
-# Environment setup
-cp .env.example .env
-php artisan key:generate
-
-# Run migrations and seed data
-php artisan migrate:fresh --seed
-
-# Start the development server
-php artisan serve
-```
 
 Open your browser at: **`http://localhost:8000`**
 
@@ -124,63 +107,4 @@ Login with:
 
 ---
 
-## 🧪 Automated Test Suite
 
-Run the full automated test suite verifying authentication, relational models, search, filters, and CRUD:
-
-```bash
-php artisan test
-```
-
-Result: **16 passed tests, 50 assertions (100% success)**.
-
----
-
-## 📦 How to Submit
-
-### 1. Push to Your GitHub:
-```bash
-# Add your remote GitHub repository
-git remote add origin https://github.com/AlvinMarron/laravel_school_management.git
-
-# Set branch to main
-git branch -M main
-
-# Push source code
-git push -u origin main
-```
-
-### 2. Generate Project ZIP File:
-A ready-to-submit archive `Project_Laravel13_Student_Management.zip` is created directly in the workspace:
-```powershell
-Compress-Archive -Path * -Exclude "vendor", "node_modules", ".git" -DestinationPath "Project_Laravel13_Student_Management.zip" -Force
-```
-
----
-
-## 📹 Video Recording Demo Checklist (MP4 / YouTube)
-
-When recording your video demo (e.g. using OBS, Windows Game Bar `Win + G`, or Loom):
-1. **Show Login / Register:**
-   - Log in using `admin@example.com` / `password123`.
-   - Optionally register a new account to show registration.
-2. **Dashboard Overview:**
-   - Show stat cards (Total Students, Departments, Enrolled, Male/Female ratio).
-3. **Departments CRUD:**
-   - Go to Departments page.
-   - Click **Add New Department**, fill in details, submit.
-   - Show the newly created department in the table.
-   - Click **View** to show department details and enrolled students.
-4. **Students CRUD & Relational Template:**
-   - Go to Students directory.
-   - Point out the **Department Name** column pulled directly from the `departments` table.
-   - Test **Search by Name** (e.g. type "Sophia" or "Alexander").
-   - Test **Filter by Department** dropdown (e.g. "Software Engineering").
-   - Test **Filter by Gender** and **Status**.
-   - Click **Add New Student**, select an assigned department, and submit.
-   - Edit the newly created student.
-   - Delete a test student with confirmation.
-5. **Show Code & Database (bonus points):**
-   - Show migrations (`create_departments_table.php`, `create_students_table.php`).
-   - Show model relationships (`Department::students()`, `Student::department()`).
-   - Show terminal running `php artisan test`.
